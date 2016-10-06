@@ -12,6 +12,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+        <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}">
+
         <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
         <link rel="stylesheet" href="{% static "css/main.css" %}">
 
@@ -29,9 +31,9 @@
                 <h1 class="title"><img src="../../static/img/niffy.png" alt="Smiley face" height="30"></h1>
                 <nav>
                     <ul>
-                        <li><a href="#">nav ul li a</a></li>
-                        <li><a href="#">nav ul li a</a></li>
-                        <li><a href="#">nav ul li a</a></li>
+                        <li><a href="#">Faturas</a></li>
+                        <!--li><a href="#">nav ul li a</a></li-->
+                        <li><a href="#">Sair</a></li>
                     </ul>
                 </nav>
             </header>
@@ -41,26 +43,21 @@
             <div class="main wrapper clearfix">
 
                 <article>
-                    <header>
-                        <h1>article header h1</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec.</p>
-                    </header>
-                    <section>
-                        <h2>article section h2</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-                    </section>
-                    <section>
-                        <h2>article section h2</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
-                    </section>
-                    <footer>
-                        <h3>article footer h3</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</p>
-                    </footer>
+                    {% for inv in invoices %}
+                        <section class="invoice">
+                            <h2><i class="fa fa-file"></i> {{ inv.business_name }}<span style="float: right;">{{ inv.total }}</span></h2>
+                            <div class="detail left">
+                                <a href="/invoices/{{inv.id}}/download" target="_blank"><i class="fa fa-download"></i></a>  Fatura
+                            </div>
+                            <div class="detail right">
+                                <span class="right">{{ inv.date }}</span>
+                            </div>
+                        </section>
+                    {% endfor %}
                 </article>
 
                 <aside>
-                    <h3>aside</h3>
+                    <h3>Pixels Camp</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
                 </aside>
 
@@ -69,7 +66,7 @@
 
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>&copy; 2016 Niffy</h3>
+                <h3>&copy; 2016 Niffy - Pixels Camp</h3>
             </footer>
         </div>
 

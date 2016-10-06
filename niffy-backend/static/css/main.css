@@ -371,3 +371,22 @@ nav a:hover {
         page-break-after: avoid;
     }
 }
+
+
+/* NIFFY */
+section.invoice > h2 {
+    margin-top: 26px;
+    margin-bottom: 8px;
+}
+
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+
+section.invoice > .detail {
+    height: 50px;
+    width: 50%;
+}

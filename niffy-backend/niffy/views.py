@@ -11,7 +11,25 @@ from django.conf import settings
 
 
 def home(request):
-    return template_render(request, 'home.html')
+
+    # TODO: dummy data
+    invs = [{
+        'business_name': 'Teaching InNovation',
+        'total': u'456,23 €',
+        'date': u'2016-10-06',
+    }, {
+        'business_name': 'Wild Fortress',
+        'total': u'143.422,11 €',
+        'date': u'2016-10-04',
+    }, {
+        'business_name': 'Continente',
+        'total': u'45,51 €',
+        'date': u'2016-10-01',
+    }]
+
+    return template_render(request, 'home.html', {
+        'invoices': invs,
+    })
 
 
 # def json_response(func):
