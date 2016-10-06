@@ -9,12 +9,13 @@ session_csrf.monkeypatch()
 from django.contrib import admin
 admin.autodiscover()
 
-from niffy.views import home
+from niffy.views import home, invoice_create
 
 urlpatterns = [
 
     url(r'^$', home, name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    url(r'^invoices$', invoice_create, name='invoice_create'),
+
     url(r'^_ah/', include('djangae.urls')),
 
     # Note that by default this is also locked down with login:admin in app.yaml

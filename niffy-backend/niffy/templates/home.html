@@ -45,12 +45,12 @@
                 <article>
                     {% for inv in invoices %}
                         <section class="invoice">
-                            <h2><i class="fa fa-file"></i> {{ inv.business_name }}<span style="float: right;">{{ inv.total }}</span></h2>
+                            <h2><i class="fa fa-file"></i> {{ inv.company_name }}<span style="float: right;">{{ inv.total_formatted }}</span></h2>
                             <div class="detail left">
-                                <a href="/invoices/{{inv.id}}/download" target="_blank"><i class="fa fa-download"></i></a>  Fatura
+                                <a href="/invoices/{{inv.id}}/download" target="_blank"><i class="fa fa-download"></i></a>  {{ inv.description }}
                             </div>
                             <div class="detail right">
-                                <span class="right">{{ inv.date }}</span>
+                                <span class="right">{{ inv.date_formatted }}</span>
                             </div>
                         </section>
                     {% endfor %}
