@@ -36,6 +36,7 @@ handlers:
 skip_files:
     - manage.py
     - README.md
+    - (.*)\.sh
     - install_deps
     - requirements.txt
     - sitepackages/dev*

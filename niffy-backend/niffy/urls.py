@@ -9,11 +9,12 @@ session_csrf.monkeypatch()
 from django.contrib import admin
 admin.autodiscover()
 
-from niffy.views import home, invoice_create
+from niffy.views import home, invoice_create, download
 
 urlpatterns = [
 
     url(r'^$', home, name='home'),
+    url(r'^invoices/(?P<id>[0-9]+)/download$', download, name='download'),
     url(r'^invoices$', invoice_create, name='invoice_create'),
 
     url(r'^_ah/', include('djangae.urls')),
