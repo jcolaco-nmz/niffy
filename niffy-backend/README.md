@@ -1,6 +1,11 @@
 # niffy
 
-How to insert a new Invoice:
+## App engine url
+
+https://niffy-pixelscamp.appspot.com
+
+
+## How to insert a new Invoice:
 
 ```
 curl --include \
@@ -34,7 +39,7 @@ curl --include \
     \"description\": \"Fatura 3421\",
     \"tags\": []
 }" \
-'http://localhost:8000/invoices'
+'https://niffy-pixelscamp.appspot.com/invoices'
 ```
 
 ```
