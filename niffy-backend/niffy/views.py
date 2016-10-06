@@ -2,15 +2,20 @@
 import logging
 import json
 from datetime import datetime
+import base64
 
 from google.appengine.ext import ndb
 
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
-from django.conf import settings
 
+import dripcil
+from dripcil.gae_ndb import File
 from .models import Invoice
+
+
+PDF_MIMETYPE = 'application/pdf'
 
 
 def home(request):
@@ -41,19 +46,44 @@ def json_response(func):
 
 def _parse_invoice(d):
     d['date'] = datetime.strptime(d['date'], '%Y-%m-%d').date()
-    return d
+    bin = None
+    if 'file' in d:
+        bin = d.get('file')
+        if bin:
+            bin = base64.b64decode(bin)
+        del d['file']
+    return d, bin
 
 
 @csrf_exempt
 @json_response
 def invoice_create(request):
     if request.method == 'POST':
-        logging.info(request.body)
-        inv = Invoice(**_parse_invoice(json.loads(request.body)))
+        params, bin = _parse_invoice(json.loads(request.body))
+
+        if bin:
+            f = File(data=bin, name=params.get('description'), mimetype=PDF_MIMETYPE)
+            f.put()
+            params['file_key'] = f.key
+
+        inv = Invoice(**params)
         inv.put()
         return inv
 
     return None
+
+
+def download(request, id):
+
+    logging.info(id)
+
+    f = File.get_by_id(long(id))
+
+    response = HttpResponse(content_type=PDF_MIMETYPE)
+    response['Content-Disposition'] = 'attachment; filename=' + dripcil.slugify(f.name) + '.pdf'
+    response.write(f.data)
+
+    return response
 
 
 def template_render(request, tpl, params={}):
