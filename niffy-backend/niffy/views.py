@@ -15,21 +15,6 @@ from .models import Invoice
 
 def home(request):
 
-    # TODO: dummy data
-    invs = [{
-        'business_name': 'Teaching InNovation',
-        'total': u'456,23 €',
-        'date': u'2016-10-06',
-    }, {
-        'business_name': 'Wild Fortress',
-        'total': u'143.422,11 €',
-        'date': u'2016-10-04',
-    }, {
-        'business_name': 'Continente',
-        'total': u'45,51 €',
-        'date': u'2016-10-01',
-    }]
-
     return template_render(request, 'home.html', {
         'invoices': Invoice.query(),
     })
@@ -54,14 +39,17 @@ def json_response(func):
     return decorator
 
 
+def _parse_invoice(d):
+    d['date'] = datetime.strptime(d['date'], '%Y-%m-%d').date()
+    return d
+
+
 @csrf_exempt
 @json_response
 def invoice_create(request):
     if request.method == 'POST':
         logging.info(request.body)
-        d = json.loads(request.body)
-        d['date'] = datetime.strptime(d['date'], '%Y-%m-%d').date()
-        inv = Invoice(**d)
+        inv = Invoice(**_parse_invoice(json.loads(request.body)))
         inv.put()
         return inv
 
