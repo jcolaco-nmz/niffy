@@ -117,4 +117,5 @@ def _do_notification(data):
     token_hex = '502051FC4CC3CAE61C461967A789EC427684464C6387CEBB7BD708E2E2DD167C'
     payload = Payload(alert="New invoice from " + data['business_name'], sound="default", badge=1, custom=data)
     apns.gateway_server.send_notification(token_hex, payload)
+    apns.gateway_server.force_close()
     return None
