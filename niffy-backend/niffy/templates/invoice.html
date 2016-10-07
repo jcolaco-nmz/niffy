@@ -2,6 +2,73 @@
 
 {% block "container" %}
 
-    <a href="/">Back</a>
+    <div class="row">
+        <div class="col-xs-1 pull-left" style="padding-top: 5px;">
+            <a href="/"><button type="button" class="btn btn-primary"><i class="fa fa-angle-left"></i></button></a>
+        </div>
+        <div class="col-xs-8">
+            <span style="font-size: xx-large; padding-left: 5px;">{{ inv.company_name }}</span>
+        </div>
+        <div class="col-xs-3 pull-right" style="padding-top: 3px;">
+            <span style="">{{ inv.date_formatted }}</span>
+        </div>
+    </div>
+
+    <span style="font-size:x-large;">Summary</span>
+
+    <div style="padding-top: 10px;">
+        <table class="table table-condensed">
+            <tbody>
+              <tr>
+                <td><strong>Description</strong></td>
+                <td>{{ inv.description }}</td>
+              </tr>
+              <tr>
+                  <td><strong>Gross total</strong></td>
+                <td>{{ inv.gross_total }}</td>
+              </tr>
+              <tr>
+                <td><strong>Net total</strong></td>
+                <td>{{ inv.net_total }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        <span style="font-size:x-large;">Details</span>
+
+        <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Tax</th>
+                <th>Net total</th>
+              </tr>
+            </thead>
+            <tbody>
+
+        {% for line in inv.lines %}
+            <tr>
+              <td>{{ line.code }}</td>
+              <td>{{ line.description }}</td>
+              <td>{{ line.quantity }}</td>
+              <td>{{ line.tax_payable }}</td>
+              <td>{{ line.net_total }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+    </div>
+
+
+    <span style="font-size:x-large;">Total: {{ inv.total_formatted }}</span>
+
+
+     <div class="pull-right">
+        <a href="/invoices/{{ inv.key.id }}/download"><button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Download</button></a>
+     </div>
+
 
 {% endblock "container" %}
