@@ -4,6 +4,12 @@
 
 https://niffy-pixelscamp.appspot.com
 
+## Test Invoice submittion
+
+1. Go to Pixels Camp DSP version at https://pixels-camp-dot-damnsimplepos.appspot.com/login
+2. Login with continente@example.com/123456 credentials
+3. Create an Invoice
+4. Wait for the notification in iOS app
 
 ## How to insert a new Invoice:
 
