@@ -17,11 +17,6 @@ from .models import Invoice
 import time
 from dripcil.apns import APNs, Frame, Payload
 
-import StringIO
-
-from .jc_niffy import s
-
-
 PDF_MIMETYPE = 'application/pdf'
 
 
