@@ -4,7 +4,7 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>Starter Template (3.0)</title>
+		<title>Niffy - Pixels Camp</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
@@ -39,8 +39,10 @@
     {% block "container" %}{% endblock %}
     </div>
 
-	<!-- script references -->
 		<script src="{% static "js/vendor/jquery.min.js" %}"></script>
 		<script src="{% static "js/vendor/bootstrap.min.js" %}"></script>
+
+    {% block "extra-script" %}
+    {% endblock "extra-script" %}
 	</body>
 </html>

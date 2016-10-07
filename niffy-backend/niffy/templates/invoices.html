@@ -6,7 +6,7 @@
 </div>
 
 {% for inv in invoices %}
-<div class="row invoice-result" style="background-color: aliceblue;">
+<div class="row invoice-result" data-id="{{inv.key.id}}">
     <div class="col-md-1 col-xs-1 col-md-1 col-lg-1">
         <h4><i class="fa fa-file"></i></h4>
     </div>
@@ -27,14 +27,18 @@
                 <span class="pull-right">{{ inv.date_formatted }}</span>
             </div>
         </div>
-        <!--div class="detail left">
-            <a href="/invoices/{{ inv.file_key.id }}/download" target="_blank"><i class="fa fa-download"></i></a>  {{ inv.description }}
-        </div>
-        <div class="detail right">
-            <span class="right"></span>
-        </div-->
     </div>
 </div>
 {% endfor %}
+{% endblock %}
 
+{% block "extra-script" %}
+<script>
+
+    $('.invoice-result').click(function(ev) {
+        var id = $(ev.currentTarget).attr('data-id');
+        window.location.href = '/invoices/' + id;
+    });
+
+</script>
 {% endblock %}
