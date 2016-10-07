@@ -9,8 +9,8 @@
         <div class="col-xs-8">
             <span style="font-size: xx-large; padding-left: 5px;">{{ inv.company_name }}</span>
         </div>
-        <div class="col-xs-3 pull-right" style="padding-top: 3px;">
-            <span style="">{{ inv.date_formatted }}</span>
+        <div class="col-xs-3" style="padding-top: 15px;">
+            <span class="pull-right">{{ inv.date_formatted }}</span>
         </div>
     </div>
 
@@ -21,15 +21,15 @@
             <tbody>
               <tr>
                 <td><strong>Description</strong></td>
-                <td>{{ inv.description }}</td>
+                <td class="text-right">{{ inv.description }}</td>
               </tr>
               <tr>
                   <td><strong>Gross total</strong></td>
-                <td>{{ inv.gross_total }}</td>
+                  <td class="text-right">{{ inv.total_formatted }}</td>
               </tr>
               <tr>
                 <td><strong>Net total</strong></td>
-                <td>{{ inv.net_total }}</td>
+                <td class="text-right">{{ inv.net_total_formatted }}</td>
               </tr>
             </tbody>
           </table>
@@ -41,9 +41,9 @@
               <tr>
                 <th>Code</th>
                 <th>Description</th>
-                <th>Quantity</th>
-                <th>Tax</th>
-                <th>Net total</th>
+                <th class="text-right">Quantity</th>
+                <th class="text-right">Tax</th>
+                <th class="text-right">Net total</th>
               </tr>
             </thead>
             <tbody>
@@ -52,9 +52,9 @@
             <tr>
               <td>{{ line.code }}</td>
               <td>{{ line.description }}</td>
-              <td>{{ line.quantity }}</td>
-              <td>{{ line.tax_payable }}</td>
-              <td>{{ line.net_total }}</td>
+              <td class="text-right">{{ line.quantity_formatted }}</td>
+              <td class="text-right">{{ line.tax_payable_formatted }}</td>
+              <td class="text-right">{{ line.net_total_formatted }}</td>
             </tr>
         {% endfor %}
         </tbody>

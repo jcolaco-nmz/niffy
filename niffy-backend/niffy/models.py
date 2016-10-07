@@ -19,6 +19,18 @@ class InvoiceLine(ndb.Model):
     tax_payable = ndb.FloatProperty()
     settlement_total = ndb.FloatProperty()
 
+    @property
+    def net_total_formatted(self):
+        return currency.format(self.net_total)
+
+    @property
+    def tax_payable_formatted(self):
+        return currency.format(self.tax_payable)
+
+    @property
+    def quantity_formatted(self):
+        return str(round(self.quantity, 1))
+
 
 class Company(ndb.Model):
 
@@ -51,6 +63,10 @@ class Invoice(BaseModel):
     @property
     def total_formatted(self):
         return currency.format(self.gross_total)
+
+    @property
+    def net_total_formatted(self):
+        return currency.format(self.net_total)
 
     @property
     def date_formatted(self):

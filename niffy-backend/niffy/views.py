@@ -1,5 +1,6 @@
 # coding=utf-8
 import logging
+import random
 import json
 from datetime import datetime
 import base64
@@ -111,11 +112,12 @@ def do_notification(request):
 def _do_notification(data):
     logging.info(data)
 
-    apns = APNs(use_sandbox=True, cert_file='niffy/apns-dev-cert.pem', key_file='niffy/apns-dev-key-plain.pem')
+    apns = APNs(use_sandbox=True, cert_file='niffy/apns-dev-cert.pem', key_file='niffy/apns-dev-key-plain.pem', enhanced=True)
 
     # Send a notification
     token_hex = '502051FC4CC3CAE61C461967A789EC427684464C6387CEBB7BD708E2E2DD167C'
     payload = Payload(alert="New invoice from " + data['business_name'], sound="default", badge=1, custom=data)
-    apns.gateway_server.send_notification(token_hex, payload)
+    identifier = random.getrandbits(32)
+    apns.gateway_server.send_notification(token_hex, payload, identifier=identifier)
     apns.gateway_server.force_close()
     return None
