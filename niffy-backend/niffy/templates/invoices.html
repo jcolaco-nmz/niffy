@@ -1,9 +1,12 @@
 {% extends "./base.html" %}
 
 {% block "container" %}
+<div class="input-group col-md-12" style="width: 100%; padding-top: 7px; padding-bottom: 7px;">
+    <input type="text" class="  search-query form-control" placeholder="Search" />
+</div>
 
 {% for inv in invoices %}
-<div class="row invoice-result">
+<div class="row invoice-result" style="background-color: aliceblue;">
     <div class="col-md-1 col-xs-1 col-md-1 col-lg-1">
         <h4><i class="fa fa-file"></i></h4>
     </div>

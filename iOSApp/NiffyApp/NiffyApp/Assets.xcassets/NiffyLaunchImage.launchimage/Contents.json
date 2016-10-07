@@ -15,6 +15,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
+      "filename" : "niffy (1)-1.png",
       "extent" : "full-screen",
       "subtype" : "retina4",
       "scale" : "2x"
@@ -36,11 +37,12 @@
       "scale" : "3x"
     },
     {
-      "orientation" : "portrait",
-      "idiom" : "iphone",
       "extent" : "full-screen",
-      "minimum-system-version" : "8.0",
+      "idiom" : "iphone",
       "subtype" : "667h",
+      "filename" : "niffy (1).png",
+      "minimum-system-version" : "8.0",
+      "orientation" : "portrait",
       "scale" : "2x"
     },
     {
