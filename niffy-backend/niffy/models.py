@@ -2,6 +2,8 @@
 import logging
 from google.appengine.ext import ndb
 
+import humanize
+
 from dripcil import currency
 from dripcil.gae_ndb import BaseModel, File
 
@@ -53,3 +55,8 @@ class Invoice(BaseModel):
     @property
     def date_formatted(self):
         return self.date.strftime('%Y-%m-%d')
+
+    @property
+    def date_formatted(self):
+        return humanize.naturaldate(self.date)
+        # return self.date.strftime('%Y-%m-%d')

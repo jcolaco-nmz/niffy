@@ -14,16 +14,22 @@ import dripcil
 from dripcil.gae_ndb import File
 from .models import Invoice
 
-import time
-from dripcil.apns import APNs, Frame, Payload
+from dripcil.apns import APNs, Payload
+
 
 PDF_MIMETYPE = 'application/pdf'
 
 
 def home(request):
+    return template_render(request, 'invoices.html', {
+        'invoices': Invoice.query().order(-Invoice.date),
+    })
 
-    return template_render(request, 'home.html', {
-        'invoices': Invoice.query(),
+
+def invoice(request, id):
+    inv = Invoice.get_by_id(long(id))
+    return template_render(request, 'invoice.html', {
+        'inv': inv,
     })
 
 
@@ -76,9 +82,6 @@ def invoice_create(request):
 
 
 def download(request, id):
-
-    logging.info(id)
-
     f = File.get_by_id(long(id))
 
     response = HttpResponse(content_type=PDF_MIMETYPE)
@@ -91,9 +94,11 @@ def download(request, id):
 def template_render(request, tpl, params={}):
     return render(request, tpl, params)
 
+
+@csrf_exempt
 @json_response
 def do_notification(request):
-    received_json_data=json.loads(request.body)
+    received_json_data = json.loads(request.body)
     logging.info(received_json_data)
 
     apns = APNs(use_sandbox=True, cert_file='niffy/apns-dev-cert.pem', key_file='niffy/apns-dev-key-plain.pem')

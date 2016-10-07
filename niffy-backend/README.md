@@ -12,7 +12,7 @@ curl --include \
      --request POST \
      --header "Content-Type: application/json" \
      --data-binary "{
-    \"date\": \"2016-10-10\",
+    \"date\": \"2015-10-06\",
     \"doc_type\": \"FR\",
     \"company\": {
         \"name\": \"Wild Fortress, Lda.\",

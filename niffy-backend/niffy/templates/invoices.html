@@ -1,0 +1,37 @@
+{% extends "./base.html" %}
+
+{% block "container" %}
+
+{% for inv in invoices %}
+<div class="row invoice-result">
+    <div class="col-md-1 col-xs-1 col-md-1 col-lg-1">
+        <h4><i class="fa fa-file"></i></h4>
+    </div>
+    <div class="col-md-11 col-xs-11 col-md-11 col-lg-11">
+        <div class="row">
+            <div class="col-md-8 col-xs-8 col-md-8 col-lg-8 inv-company">
+                <span>{{ inv.company_name }}</span>
+            </div>
+            <div class="col-md-4 col-xs-4 col-md-4 col-lg-4 inv-total">
+                <span class="pull-right">{{ inv.total_formatted }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-xs-8 col-md-8 col-lg-8 inv-description">
+                {{ inv.description }}
+            </div>
+            <div class="col-md-4 col-xs-4 col-md-4 col-lg-4 inv-date">
+                <span class="pull-right">{{ inv.date_formatted }}</span>
+            </div>
+        </div>
+        <!--div class="detail left">
+            <a href="/invoices/{{ inv.file_key.id }}/download" target="_blank"><i class="fa fa-download"></i></a>  {{ inv.description }}
+        </div>
+        <div class="detail right">
+            <span class="right"></span>
+        </div-->
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

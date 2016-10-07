@@ -7,7 +7,9 @@
 		<title>Starter Template (3.0)</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+		<link href="{% static "css/main.css" %}" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -33,29 +35,10 @@
           </div>
         </div>
 
-<div class="container">
-
-    <div class="col-md-8">
-        {% for inv in invoices %}
-            <section class="invoice">
-                <h2><i class="fa fa-file"></i> {{ inv.company_name }}<span style="float: right;">{{ inv.total_formatted }}</span></h2>
-                <div class="detail left">
-                    <a href="/invoices/{{ inv.file_key.id }}/download" target="_blank"><i class="fa fa-download"></i></a>  {{ inv.description }}
-                </div>
-                <div class="detail right">
-                    <span class="right">{{ inv.date_formatted }}</span>
-                </div>
-            </section>
-        {% endfor %}
+    <div class="container-fluid">
+    {% block "container" %}{% endblock %}
     </div>
 
-
-    <div class="col-md-4">
-      <h3>Pixels Camp</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
-    </div>
-
-</div><!-- /.container -->
 	<!-- script references -->
 		<script src="{% static "js/vendor/jquery.min.js" %}"></script>
 		<script src="{% static "js/vendor/bootstrap.min.js" %}"></script>

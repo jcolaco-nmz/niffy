@@ -52,7 +52,7 @@ MIDDLEWARE_CLASSES = (
     'djangae.contrib.gauth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # 'csp.middleware.CSPMiddleware',
-    #'session_csrf.CsrfMiddleware',
+    'session_csrf.CsrfMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
