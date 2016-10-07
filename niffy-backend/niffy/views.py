@@ -14,6 +14,13 @@ import dripcil
 from dripcil.gae_ndb import File
 from .models import Invoice
 
+import time
+from dripcil.apns import APNs, Frame, Payload
+
+import StringIO
+
+from .jc_niffy import s
+
 
 PDF_MIMETYPE = 'application/pdf'
 
@@ -88,6 +95,19 @@ def download(request, id):
 
 def template_render(request, tpl, params={}):
     return render(request, tpl, params)
+
+@json_response
+def do_notification(request):
+    received_json_data=json.loads(request.body)
+    logging.info(received_json_data)
+
+    apns = APNs(use_sandbox=True, cert_file='niffy/apns-dev-cert.pem', key_file='niffy/apns-dev-key-plain.pem')
+
+    # Send a notification
+    token_hex = '502051FC4CC3CAE61C461967A789EC427684464C6387CEBB7BD708E2E2DD167C'
+    payload = Payload(alert="New invoice from " + received_json_data['business_name'], sound="default", badge=1, custom=received_json_data)
+    apns.gateway_server.send_notification(token_hex, payload)
+    return None
 
 
 # @json_response

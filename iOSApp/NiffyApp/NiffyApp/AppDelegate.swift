@@ -27,13 +27,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        if let aps: AnyObject = userInfo["aps"] as AnyObject? {
-            if let apsDict = aps as? [String : AnyObject]{
-                if let badge: AnyObject = apsDict["badge"] {
-                    print(badge)
-                    //self.updateAppIconBadgeNumber(badge as? Int)
-                }
+        if let id: Int = userInfo["id"] as? Int {
+            print(id)
+            if let view: ViewController = window?.rootViewController as? ViewController {
+                //do something if it's an instance of that class
+                let url = URL(string: "https://niffy-pixelscamp.appspot.com/invoices/" + String(id));
+                let requestObj = URLRequest(url: url!);
+                view.webView.loadRequest(requestObj);
             }
         }
     }
