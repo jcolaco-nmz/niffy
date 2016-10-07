@@ -1,8 +1,12 @@
 {% extends "./base.html" %}
 
 {% block "container" %}
+
 <div class="input-group col-md-12" style="width: 100%; padding-top: 7px; padding-bottom: 7px;">
-    <input type="text" class="  search-query form-control" placeholder="Search" />
+    <input type="text" class="search-query form-control" placeholder="Search your invoices..." />
+    <span class="input-group-btn">
+        <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+    </span>
 </div>
 
 {% for inv in invoices %}
