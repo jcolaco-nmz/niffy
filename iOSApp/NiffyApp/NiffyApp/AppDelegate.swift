@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let requestObj = URLRequest(url: url!);
                 view.webView.loadRequest(requestObj);
             }
+            application.applicationIconBadgeNumber -= 1
         }
     }
     
